@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aim.questionnaire.dao.MyUserEntityMapper">
+  <!--查询用户列表（模糊搜索）-->
+  <select id="queryUserList" parameterType="map" resultType="java.util.Map">
+    SELECT id,username,`password`,status,start_time,stop_time
+    FROM user_info
+    ORDER By creation_date desc
+  </select>
+  <!--查询用户列表长度-->
+  <select id="queryUserListLength" resultType="java.lang.Integer">
+    SELECT count(*)
+    FROM user_info
+  </select>
+</mapper>

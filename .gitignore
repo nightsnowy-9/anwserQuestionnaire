@@ -1,0 +1,8 @@
+# Default ignored files
+/workspace.xml
+.idea
+answerCount_log/
+phone_log/
+phone_send_log/
+questionnaire_two_log/
+.DS_store
