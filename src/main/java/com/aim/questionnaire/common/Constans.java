@@ -28,7 +28,7 @@ public class Constans {
     public static final String PROJECT_EXIST_MESSAGE="有(历史)问卷，不可以删除";
     public static final String QUESTION_EXIST_MESSAGE="项目有发布中的问卷，不可以编辑";
     public static final String QUESTION_COUNT_MESSAGE="项目可以编辑";
-
+    public static final String PROJECT_NAME_EXIT_MESSAGE = "项目名称重复";
 
     /**
      * Created by wln on 2018/8/8

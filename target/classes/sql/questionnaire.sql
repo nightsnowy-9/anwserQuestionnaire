@@ -37,7 +37,7 @@ CREATE TABLE `project_info` (
 --  Records of `project_info`
 -- ----------------------------
 BEGIN;
-INSERT INTO `project_info` VALUES ('283dcf241cf245aea824dc10bbb3d680', '8ceeee2995f3459ba1955f85245dc7a5', '第一个项目', '第一个项目描述 问问', 'admin', '2020-09-23 20:27:42', 'admin', '2020-09-23 20:27:59'), ('4cd6ccb65c894eafaa70b12330f8c2f8', '8ceeee2995f3459ba1955f85245dc7a5', '第一个项目', '第一个项目 的方法v', 'admin', '2020-09-27 16:23:20', 'admin', '2020-09-27 16:23:20');
+INSERT INTO `project_info` VALUES ('283dcf241cf245aea824dc10bbb3d680', '8ceeee2995f3459ba1955f85245dc7a5', '第一个项目', '第一个项目描述 问问', 'admin', '2020-09-23 20:27:42', 'admin', '2020-09-23 20:27:59'), ('4cd6ccb65c894eafaa70b12330f8c2f8', '8ceeee2995f3459ba1955f85245dc7a5', '第二个项目', '第一个项目 的方法v', 'admin', '2020-09-27 16:23:20', 'admin', '2020-09-27 16:23:20');
 COMMIT;
 
 -- ----------------------------

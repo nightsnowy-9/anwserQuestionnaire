@@ -32,12 +32,13 @@ function editProjectRight(projectNameInt, projectContentInt) {
         } else if (projectContentInt.trim() == '') {
             layer.msg('请完整填写项目描述')
         } else {
+            var userName = getCookie("userName");
             var url = '/modifyProjectInfo';
             var data = {
                 "id": projectId,
                 "projectName": projectNameInt,
-                "projectContent": projectContentInt
-
+                "projectContent": projectContentInt,
+                "lastUpdatedBy": userName
             };
             commonAjaxPost(true, url, data, function (result) {
                 if (result.code == '666') {
