@@ -160,14 +160,3 @@ function getProjectInfo(id) {
     setCookie("projectId", id);
     window.location.href = 'projectInfo.html'
 }
-
-
-// 为了创建问卷而获取项目id、项目名称
-function createGetProjectInfo(id, name) {
-    //alert("创建问卷")
-    deleteCookie("projectId");
-    setCookie("projectId", id);
-    window.location.href = "createQuestionnaire.html"
-}
-
- 

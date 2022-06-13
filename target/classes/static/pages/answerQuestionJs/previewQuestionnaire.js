@@ -19,7 +19,8 @@ $(function () {
     timeStart = (new Date()).Format("yyyy/M/d h:m:s");
     //判断有没有答过
     var url = '/queryQuestionnaireById';
-    var da = {'questionId':id};
+    // var da = {'questionId':id};
+    var da = {id:getCookie("questionId")};
     if (eORp != 'zzz') {
         if (eORp == 'p') {
             da.phone = contact;
@@ -247,7 +248,8 @@ function setQuestion(result) {
     }
 
     $('.officialTips').html(result.data.questionContent);
-    questionList = result.data.questionList;
+    questionList = JSON.parse(res.data.question);
+    // questionList = result.data.questionList;
     if(questionList!=null) {
         for (var i = 0; i < questionList.length; i++) {
             var questionType = questionList[i].questionType;
