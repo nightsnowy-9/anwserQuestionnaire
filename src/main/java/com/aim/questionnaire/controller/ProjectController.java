@@ -101,6 +101,7 @@ public class ProjectController {
     public HttpResponseEntity modifyProjectInfo(@RequestBody ProjectEntity projectEntity) {
         HttpResponseEntity httpResponseEntity = new HttpResponseEntity();
         int result = projectService.modifyProjectInfo(projectEntity, projectEntity.getLastUpdatedBy());
+
         if (result == -1) {
             httpResponseEntity.setCode(Constans.EXIST_CODE);
             httpResponseEntity.setData(result);

@@ -156,7 +156,7 @@
         last_update_date = #{lastUpdateDate,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where id = #{id,jdbcType=VARCHAR}
+    where id not in (select project_id from questionnaire_info where question_stop != 4 and question_stop != 5 ) and id = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.aim.questionnaire.dao.entity.ProjectEntity">
     <!--
