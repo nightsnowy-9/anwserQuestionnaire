@@ -95,6 +95,7 @@ function quickCreate() {
     if (urlObj.i == "") {
         var userName = getCookie("userName");
         var da = {
+            'projectId': getCookie('projectId'),
             'questionName': questionName,
             'questionContent': questionContent,
             'startTime': dateChange(nowTimeInput),
