@@ -16,15 +16,15 @@ var aaa = 0;
 var bbb = 0;
 var questionId
 $(function () {
-    console.log(getCookie("QuestionId"));
+    console.log(getCookie("questionId"));
     deleteCookie('previewId');
     var urlObj = GetRequest();
     if (Object.keys(urlObj).length == 0) {
-        setCookie('QuestionId', getCookie("QuestionId"));
-        var da = {'id': getCookie("QuestionId")};
-        console.log(getCookie("QuestionId"));
+        setCookie('questionId', getCookie("questionId"));
+        var da = {'id': getCookie("questionId")};
+        console.log(getCookie("questionId"));
     } else {
-        deleteCookie('QuestionId');
+        deleteCookie('questionId');
         deleteCookie('isEdit');
         deleteCookie('projectIdForCreate');
         var qId = urlObj.qId;
@@ -32,14 +32,14 @@ $(function () {
         var qIdStr = "";
         if (qId != undefined) {
             qIdStr = $.base64.decode(qId);
-            setCookie('QuestionId', qIdStr);
-            //如果为编辑模板就不清空QuestionId
+            setCookie('questionId', qIdStr);
+            //如果为编辑模板就不清空questionId
             setCookie('isEdit', '1');
         } else if (i != undefined) {
             qIdStr = $.base64.decode(i);
-            setCookie('QuestionId', qIdStr);
+            setCookie('questionId', qIdStr);
         }
-        questionId = qIdStr;
+        questionId = qId;
         var da = {'id': questionId};
     }
 
@@ -959,18 +959,18 @@ function editFinish() {
         //获取问卷说明
         var questionContent = $('#pater_desc').html();
         var da = '';
-        var url = '';
+        var url = '/modifyQuestionnaire';
         da = {
             'questionList': questionList,
-            'questionTitle': questionTitles, //所有的题目
+            //'questionTitle': questionTitles, //所有的题目
             'questionId': questionId,
             'dataId': dataId,
-            'questionName': questionName,
+            //'questionName': questionName,
+            'questionTitle': questionName,
             'questionContent': questionContent,
-            'endTime': ''
+            //'endTime': ''
         };
-        var urlQ = '/modifyQuestionnaire';
-        commonAjaxPost(true, urlQ, da, addQuestionnaireSuccess)
+        commonAjaxPost(true, url, da, addQuestionnaireSuccess)
     }
 }
 
@@ -1164,20 +1164,20 @@ function sureChange() {
 function addQuestionnaireSuccess(res) {
     // console.log(res);
     if (res.code == '666') {
-        deleteCookie('QuestionId');
+        deleteCookie('questionId');
         deleteCookie('previewId');
         layer.msg(res.message, {icon: 1});
         if (res.message == '添加成功') {
-            setCookie('QuestionId', res.data);
+            setCookie('questionId', res.data);
             setCookie('previewId', res.data);
-            judgeQuestionId();
-            // console.log(getCookie('QuestionId'));
+            judgequestionId();
+            // console.log(getCookie('questionId'));
             questionList = [];
         } else if (res.message == '修改成功') {
-            setCookie('QuestionId', res.data);
+            setCookie('questionId', res.data);
             setCookie('previewId', res.data);
-            judgeQuestionId();
-            // console.log(getCookie('QuestionId'));
+            judgequestionId();
+            // console.log(getCookie('questionId'));
         }
     } else if (res.code == "333") {
         layer.msg(res.message, {icon: 2});
@@ -1203,8 +1203,8 @@ function queryQuestionnaireAllSuccess(res) {
         $('#pater_desc').html(res.data.questionContent);//问卷说明
         if (res.data.questionStop == '4' || res.data.questionStop == '0') {
             if (getCookie('isEdit') != '1') {
-                deleteCookie('QuestionId');
-                judgeQuestionId();
+                deleteCookie('questionId');
+                judgequestionId();
                 $('.questionTitle').text(questionInfo.questionName); //问卷名称
                 $('#pater_desc').html(questionInfo.questionContent);//问卷说明
             }
@@ -1478,8 +1478,8 @@ function showQuestion(question) {
 
 };
 
-function judgeQuestionId() {
-    if (getCookie('QuestionId') == undefined) {
+function judgequestionId() {
+    if (getCookie('questionId') == undefined) {
         aaa = 0;
     } else {
         aaa = 1;

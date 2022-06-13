@@ -111,7 +111,7 @@ function TableInit() {
                                 'status': ''
                             };
 
-                            dataNewObj.id = userInfo[i].id;
+                            //dataNewObj.id = userInfo[i].id;
                             dataNewObj.username = userInfo[i].username;
                             dataNewObj.password = userInfo[i].password;
                             dataNewObj.startTime = userInfo[i].start_time.substring(0,19);

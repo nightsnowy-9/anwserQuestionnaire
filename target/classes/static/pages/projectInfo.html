@@ -16,6 +16,9 @@
     <link rel="stylesheet" href="../css/createblank.css">
 
     <script src="../plugins/jQuery/jquery-1.12.4.min.js"></script>
+    <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../plugins/bootstrap-table/js/bootstrap-table.js"></script>
+    <script src="../plugins/bootstrap-table/js/bootstrap-table-zh-CN.js"></script>
     <script src="../plugins/cookie/jquery.cookie.js"></script>
     <script src="../plugins/layer/layer.js"></script>
     <script src="../common/common.js"></script>
@@ -111,32 +114,34 @@
                     <div class="fixed-table-body">
                         <div class="fixed-table-loading" style="top: 41px; display: none;">正在努力地加载数据中，请稍候……
                         </div>
-                        <table class="questionnaire_table table table-hover table-striped"
-                               style="word-wrap:break-word; word-break:break-all">
-                            <thead>
-                            <tr>
-                                <th style="text-align: center; " data-field="Number">
-                                    <div class="th-inner ">序号</div>
-                                    <div class="fht-cell"></div>
-                                </th>
-                                <th style="text-align: center; " data-field="questionname">
-                                    <div class="th-inner ">试卷名称</div>
-                                    <div class="fht-cell"></div>
-                                </th>
-                                <th style="text-align: center; " data-field="questionname">
-                                    <div class="th-inner ">发布时间</div>
-                                    <div class="fht-cell"></div>
-                                </th>
-                                <th style="text-align: center; " data-field="operation">
-                                    <div class="th-inner ">操作</div>
-                                    <div class="fht-cell"></div>
-                                </th>
-                            </tr>
-                            </thead>
-                            <tbody id="questTableBody">
+<!--                        <table class="questionnaire_table table table-hover table-striped"-->
+<!--                               style="word-wrap:break-word; word-break:break-all">-->
+<!--                            <thead>-->
+<!--                            <tr>-->
+<!--                                <th style="text-align: center; " data-field="Number">-->
+<!--                                    <div class="th-inner ">序号</div>-->
+<!--                                    <div class="fht-cell"></div>-->
+<!--                                </th>-->
+<!--                                <th style="text-align: center; " data-field="questionname">-->
+<!--                                    <div class="th-inner ">试卷名称</div>-->
+<!--                                    <div class="fht-cell"></div>-->
+<!--                                </th>-->
+<!--                                <th style="text-align: center; " data-field="questionname">-->
+<!--                                    <div class="th-inner ">发布时间</div>-->
+<!--                                    <div class="fht-cell"></div>-->
+<!--                                </th>-->
+<!--                                <th style="text-align: center; " data-field="operation">-->
+<!--                                    <div class="th-inner ">操作</div>-->
+<!--                                    <div class="fht-cell"></div>-->
+<!--                                </th>-->
+<!--                            </tr>-->
+<!--                            </thead>-->
+<!--                            <tbody id="questTableBody">-->
 
-                            </tbody>
-                        </table>
+<!--                            </tbody>-->
+<!--                        </table>-->
+                        <table id="questionnaireTable" style="text-align:  center;font-size: 14px;margin: auto;word-wrap:break-word; word-break:break-all" ></table>
+
                     </div>
                 </div>
             </div>

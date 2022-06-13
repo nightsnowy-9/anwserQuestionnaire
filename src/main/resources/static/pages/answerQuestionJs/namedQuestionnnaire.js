@@ -71,7 +71,7 @@ function quickCreate() {
     var chooseTimeRange = $("#config-demo").val();
     var nowTimeInput = chooseTimeRange.split(' ~ ')[0];
     var questionendTime = chooseTimeRange.split(' ~ ')[1];
-    debugger
+    //debugger
     var urlObj = GetRequest();
 
     deleteCookie('questionInfo');
@@ -90,9 +90,10 @@ function quickCreate() {
     }
     //console.log(getCookie('projectIdForCreate'));
     //console.log(getCookie('QuestionId'));
-    debugger;
+    //debugger;
     //直接创建问卷
     if (urlObj.i == "") {
+        var userName = getCookie("userName");
         var da = {
             'questionName': questionName,
             'questionContent': questionContent,
@@ -100,6 +101,8 @@ function quickCreate() {
             'endTime': dateChange(questionendTime),
             'questionStop': '5',
             'dataId': getCookie('dataId'),
+            "createdBy": userName,
+            "lastUpdatedBy": userName
             // 'projectId': getCookie('projectIdForCreate')
         };
         if (getCookie('TProjectId') != undefined) {    //创建问卷
