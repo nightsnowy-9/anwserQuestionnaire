@@ -44,7 +44,7 @@ $(function () {
     }
 
     var url = '/queryQuestionnaireAll';
-    //commonAjaxPost(true, url, da, queryQuestionnaireAllSuccess);
+    commonAjaxPost(true, url, da, queryQuestionnaireAllSuccess);
 
 });
 
@@ -1213,7 +1213,7 @@ function queryQuestionnaireAllSuccess(res) {
             startTime = res.data.startTime;
             questionStop = res.data.questionStop;
         }
-        var question = res.data.question;
+        var question = JSON.parse(res.data.question);
         setCookie('questionList', question);
         if (question != null) {
             for (var i = 0; i < question.length; i++) {

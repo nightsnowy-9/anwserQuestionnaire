@@ -86,5 +86,8 @@ public class QuestionnaireService {
         return 1;
     }
 
+    public QuestionnaireEntity selectByPrimaryKey(String id){
+        return questionnaireEntityMapper.selectByPrimaryKey(id);
+    }
 }
 

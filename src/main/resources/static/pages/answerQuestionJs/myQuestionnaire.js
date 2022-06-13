@@ -155,6 +155,8 @@
      //alert("创建问卷")
      deleteCookie("projectId");
      setCookie("projectId", id);
+     deleteCookie("projectName");
+     setCookie("projectName", name);
      window.location.href = "createQuestionnaire.html"
  }
  

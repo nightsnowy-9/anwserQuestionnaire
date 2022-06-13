@@ -153,4 +153,29 @@ public class QuestionaireController {
 
         return response;
     }
+
+    @PostMapping("/queryQuestionnaireAll")
+    HttpResponseEntity queryQuestionnaireAll(@RequestBody HashMap<String,Object> map) {
+        HttpResponseEntity response = new HttpResponseEntity();
+        String id= (String) map.get("id");
+        QuestionnaireEntity questionnaireEntity=questionnaireService.selectByPrimaryKey(id);
+
+        response.setData(questionnaireEntity);
+        response.setCode(Constans.SUCCESS_CODE);
+        response.setMessage(Constans.ADD_MESSAGE);
+        return response;
+    }
+
+    @PostMapping("/queryQuestionnaireById")
+    HttpResponseEntity queryQuestionnaireById(@RequestBody HashMap<String,Object> map) {
+        HttpResponseEntity response = new HttpResponseEntity();
+        String id= (String) map.get("id");
+        QuestionnaireEntity questionnaireEntity=questionnaireService.selectByPrimaryKey(id);
+
+        response.setData(questionnaireEntity);
+        response.setCode(Constans.SUCCESS_CODE);
+        response.setMessage(Constans.ADD_MESSAGE);
+        return response;
+    }
+
 }
