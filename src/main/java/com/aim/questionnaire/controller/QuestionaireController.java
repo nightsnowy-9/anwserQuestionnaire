@@ -50,9 +50,10 @@ public class QuestionaireController {
         HttpResponseEntity httpResponseEntity = new HttpResponseEntity();
         int result = questionnaireService.deleteQuestionnaireById(questionnaireEntity);
         if (result == 0) {
+
             httpResponseEntity.setCode(Constans.EXIST_CODE);
             httpResponseEntity.setData(result);
-            httpResponseEntity.setMessage(Constans.PROJECT_EXIST_MESSAGE);
+            httpResponseEntity.setMessage(Constans.COPY_EXIT_DELETE_MESSAGE);
         } else {
             httpResponseEntity.setCode(Constans.SUCCESS_CODE);
             httpResponseEntity.setData(result);
@@ -103,8 +104,8 @@ public class QuestionaireController {
             response.setCode(Constans.SUCCESS_CODE);
             response.setMessage(Constans.UPDATE_MESSAGE);
         } else {
-            response.setCode(Constans.SUCCESS_CODE);
-            response.setMessage(Constans.QUESTION_EXIST_MESSAGE);
+            response.setCode(Constans.EXIST_CODE);
+            response.setMessage(Constans.COPY_EXIT_MODIFY_MESSAGE);
         }
         return response;
     }

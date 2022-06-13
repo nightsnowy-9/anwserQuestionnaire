@@ -221,23 +221,25 @@ function editQuest(id, name, content, endTime, creationDate, dataId) {
         "id": id
     };
     commonAjaxPost(true, '/queryQuestionnaireStatus', data, function (result) {
-        // if (result.code == "666") {
-        //     if (result.data != "5") {
-        //         layer.msg('问卷已发布，不可修改', {icon: 2});
-        //     } else if (result.data == "5") {
-        //         deleteCookie("questionId");
-        //         deleteCookie("questionName");
-        //         deleteCookie("questionContent");
-        //         deleteCookie("endTime");
-        //         setCookie("questionId", id);
-        //         setCookie("questionName", name);
-        //         setCookie("questionContent", content);
-        //         setCookie("endTime", endTime);
-        //         setCookie("creationDate", creationDate);
-        //         setCookie("dataId", dataId);
-        //         window.location.href = 'editQuestionnaire.html'
-        //     }
-        // }
+        if (result.code == "666") {
+            if (result.data != "5") {
+                layer.msg('问卷已发布，不可修改', {icon: 2});
+                return;
+            }
+            // else if (result.data == "5") {
+            //     deleteCookie("questionId");
+            //     deleteCookie("questionName");
+            //     deleteCookie("questionContent");
+            //     deleteCookie("endTime");
+            //     setCookie("questionId", id);
+            //     setCookie("questionName", name);
+            //     setCookie("questionContent", content);
+            //     setCookie("endTime", endTime);
+            //     setCookie("creationDate", creationDate);
+            //     setCookie("dataId", dataId);
+            //     window.location.href = 'editQuestionnaire.html'
+            // }
+        }
         if (result.code == "666") {
             // if (result.data == "1") {
             //     if ($("#operationAll" + m + n).children("a:first-child").text() == '开启') {
@@ -309,9 +311,20 @@ function deleteQuestionnaire(questionnaireId) {
 
 // 设计问卷
 function designQuest(id){
-    deleteCookie("questionId");
-    setCookie("questionId", id);
-    window.location.href="designQuestionnaire.html"+"?qId=" + id ;
+    var data = {
+        "id": id
+    };
+    commonAjaxPost(true, '/queryQuestionnaireStatus', data, function (result) {
+        if (result.code == "666") {
+            if (result.data != "5") {
+                layer.msg('问卷已发布，不可修改', {icon: 2});
+                return;
+            }
+            deleteCookie("questionId");
+            setCookie("questionId", id);
+            window.location.href = "designQuestionnaire.html" + "?qId=" + id;
+        }
+    });
 }
 
 function changeStatus(questionnaireId, questionStop){

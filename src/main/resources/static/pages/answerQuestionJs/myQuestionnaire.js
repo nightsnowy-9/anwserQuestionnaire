@@ -148,9 +148,7 @@
      window.location.href = 'projectInfo.html'
  }
  
- 
- 
- 
+
  
  // 为了创建问卷而获取项目id、项目名称
  function createGetProjectInfo(id, name) {

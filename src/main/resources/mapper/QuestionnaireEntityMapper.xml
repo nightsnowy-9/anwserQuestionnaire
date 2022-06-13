@@ -69,6 +69,7 @@
     delete from questionnaire_info
     where id = #{id,jdbcType=VARCHAR}
     AND question_stop != '1'
+    AND question_stop != '2'
   </delete>
   <insert id="insert" parameterType="com.aim.questionnaire.dao.entity.QuestionnaireEntity">
     <!--

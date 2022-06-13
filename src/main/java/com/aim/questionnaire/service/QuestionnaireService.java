@@ -69,12 +69,13 @@ public class QuestionnaireService {
     }
 
     public boolean checkModify(String questionId) {
-        return queryQuestionnaireStatus(questionId).equals(modifyOk);
+        String res = queryQuestionnaireStatus(questionId);
+        return res.equals("5") || res.equals("4");
     }
 
     public boolean checkModify(HashMap<String, Object> map) {
         String questionId = (String) map.get("questionId");
-        return queryQuestionnaireStatus(questionId).equals(modifyOk);
+        return checkModify(questionId);
     }
 
     public int modifyQuestionnaireInfo(QuestionnaireEntity questionnaireEntity) {

@@ -37,6 +37,7 @@ public class Constans {
     public static final String COPY_MESSAGE = "复制成功";
     public static final String COPY_EXIT_MESSAGE = "问卷发布中，不可复制";
     public static final String NAME_EXIT_MESSAGE = "问卷名称重复";
+    public static final String COPY_EXIT_MODIFY_MESSAGE = "问卷发布中，不可修改";
     public static final String COPY_EXIT_DELETE_MESSAGE = "问卷发布中，不可删除";
 
     public static final String ANSWER_ZERO_MESSAGE = "此问卷没有答题人"; //问卷没有答题人
