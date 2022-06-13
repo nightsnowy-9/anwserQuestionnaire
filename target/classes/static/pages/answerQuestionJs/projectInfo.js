@@ -198,10 +198,15 @@ function addFunctionAlty(value, row, index) {
     //btnText += "<button type=\"button\" id=\"btn_look\" onclick=\"resetPassword(" + "'" + row.id + "'" + ")\" style='width: 77px;' class=\"btn btn-default-g ajax-link\">重置密码</button>&nbsp;&nbsp;";
 
     //btnText += "<button type=\"button\" id=\"btn_look\" onclick=\"editQuest(" + "'" + row.id + "')\" class=\"btn btn-default-g ajax-link\">编辑</button>&nbsp;&nbsp;";
-    btnText += "<button type=\"button\" id=\"btn_look\" onclick=\"editQuest(" + "'" + row.qID + "','" + row.questionName + "','" + row.questionContent + "','" + row.endTime + "','" + row.creationDate +  "','" + row.dataID + "')\" class=\"btn btn-default-g ajax-link\">编辑</button>&nbsp;&nbsp;";
+    btnText += "<button type=\"button\" id=\"btn_edit\" onclick=\"editQuest(" + "'" + row.qID + "','" + row.questionName + "','" + row.questionContent + "','" + row.endTime + "','" + row.creationDate +  "','" + row.dataID + "')\" class=\"btn btn-default-g ajax-link\">编辑</button>&nbsp;&nbsp;";
 
-    btnText += "<button type=\"button\" id=\"btn_look\" onclick=\"designQuest(" + "'" + row.qID + "')\" class=\"btn btn-default-g ajax-link\">设计</button>&nbsp;&nbsp;";
+    btnText += "<button type=\"button\" id=\"btn_design\" onclick=\"designQuest(" + "'" + row.qID + "')\" class=\"btn btn-default-g ajax-link\">设计</button>&nbsp;&nbsp;";
 
+    if (row.questionStop == "2") {
+        btnText += "<button type=\"button\" id=\"btn_open" + row.id + "\" onclick=\"changeStatus(" + "'" + row.qID + "','" + 5 + "')\" class=\"btn btn-danger-g ajax-link\">关闭</button>&nbsp;&nbsp;";
+    } else if (row.questionStop == "5") {
+        btnText += "<button type=\"button\" id=\"btn_close" + row.id + "\" onclick=\"changeStatus(" + "'" + row.qID + "','" + 2 + "')\" class=\"btn btn-success-g ajax-link\">开启</button>&nbsp;&nbsp;"
+    }
 
     btnText += "<button type=\"button\" id=\"btn_stop" + row.id + "\" onclick=\"deleteQuestionnaire(" + "'" + row.qID + "'" + ")\" class=\"btn btn-danger-g ajax-link\">删除</button>&nbsp;&nbsp;";
 
@@ -275,7 +280,7 @@ function editQuest(id, name, content, endTime, creationDate, dataId) {
     });
 }
 
-// 删除项目
+// 删除问卷
 function deleteQuestionnaire(questionnaireId) {
     layer.confirm('您确认要删除此问卷吗？', {
         btn: ['确定', '取消'] //按钮
@@ -302,8 +307,36 @@ function deleteQuestionnaire(questionnaireId) {
     });
 }
 
+// 设计问卷
 function designQuest(id){
     deleteCookie("questionId");
     setCookie("questionId", id);
     window.location.href="designQuestionnaire.html"+"?qId=" + id ;
+}
+
+function changeStatus(questionnaireId, questionStop){
+    layer.confirm('您确认要开启/关闭此问卷吗？', {
+        btn: ['确定', '取消'] //按钮
+    }, function () {
+        var url = '/changeQuestionnaireStatus';
+        var data = {
+            "questionId": questionnaireId,
+            "questionStop": questionStop,
+        };
+        commonAjaxPost(true, url, data, function (result) {
+            // //console.log(result);
+            if (result.code == "666") {
+                layer.msg(result.message, {icon: 1});
+                getQuestionnaireList();
+            } else if (result.code == "333") {
+                layer.msg(result.message, {icon: 2});
+                setTimeout(function () {
+                    window.location.href = 'login.html';
+                }, 1000);
+            } else {
+                layer.msg(result.message, {icon: 2});
+            }
+        });
+    }, function () {
+    });
 }

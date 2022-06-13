@@ -604,6 +604,9 @@
       <if test="questionList != null">
         question = #{questionList,jdbcType=LONGVARCHAR},
       </if>
+      <if test="questionStop != null">
+        question_stop = #{questionStop,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{questionId,jdbcType=VARCHAR}
   </update>

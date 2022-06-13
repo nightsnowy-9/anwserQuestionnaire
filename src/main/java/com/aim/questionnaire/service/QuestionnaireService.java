@@ -61,7 +61,6 @@ public class QuestionnaireService {
 
 
     public int modifyQuestionnaire(HashMap<String, Object> map) {
-        map.put("questionList", JSON.toJSONString(map.get("questionList")));
         return questionnaireEntityMapper.modifyQuestionnaire(map);
     }
 

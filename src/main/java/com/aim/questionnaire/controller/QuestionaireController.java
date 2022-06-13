@@ -6,6 +6,7 @@ import com.aim.questionnaire.dao.entity.ProjectEntity;
 import com.aim.questionnaire.dao.entity.QuestionnaireEntity;
 import com.aim.questionnaire.service.ProjectService;
 import com.aim.questionnaire.service.QuestionnaireService;
+import com.alibaba.fastjson.JSON;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,6 +98,7 @@ public class QuestionaireController {
     HttpResponseEntity modifyQuestionnaire(@RequestBody HashMap<String, Object> map) {
         HttpResponseEntity response = new HttpResponseEntity();
         if (questionnaireService.checkModify(map)) {
+            map.put("questionList", JSON.toJSONString(map.get("questionList")));
             questionnaireService.modifyQuestionnaire(map);
             response.setCode(Constans.SUCCESS_CODE);
             response.setMessage(Constans.UPDATE_MESSAGE);
@@ -106,6 +108,21 @@ public class QuestionaireController {
         }
         return response;
     }
+
+    @PostMapping("/changeQuestionnaireStatus")
+    HttpResponseEntity changeQuestionnaireStatus(@RequestBody HashMap<String, Object> map) {
+        HttpResponseEntity response = new HttpResponseEntity();
+        if (true) {
+            questionnaireService.modifyQuestionnaire(map);
+            response.setCode(Constans.SUCCESS_CODE);
+            response.setMessage(Constans.UPDATE_MESSAGE);
+        } else {
+            response.setCode(Constans.SUCCESS_CODE);
+            response.setMessage(Constans.QUESTION_EXIST_MESSAGE);
+        }
+        return response;
+    }
+
 
     @PostMapping("/modifyQuestionnaireInfo")
     HttpResponseEntity modifyQuestionnaireInfo(@RequestBody QuestionnaireEntity questionnaireEntity) {
@@ -121,6 +138,8 @@ public class QuestionaireController {
         }
         return response;
     }
+
+
 
     @PostMapping("/addSendQuestionnaire")
     HttpResponseEntity addSendQuestionnaire(@RequestBody HashMap<String, Object> map) {
