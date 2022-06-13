@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `project_info`;
 CREATE TABLE `project_info` (
   `id` varchar(50) NOT NULL COMMENT '项目表主键',
   `user_id` varchar(50) DEFAULT NULL COMMENT '用户id（没有用）',
-  `project_name` varchar(100) DEFAULT NULL COMMENT '项目名称',
+  `project_name` varchar(100) DEFAULT NULL UNIQUE COMMENT '项目名称',
   `project_content` text COMMENT '项目说明',
   `created_by` char(32) DEFAULT NULL COMMENT '创建人',
   `creation_date` datetime DEFAULT NULL COMMENT '创建时间',
