@@ -76,12 +76,12 @@ public class ProjectController {
     public HttpResponseEntity addProjectInfo(@RequestBody ProjectEntity projectEntity) {
         HttpResponseEntity httpResponseEntity = new HttpResponseEntity();
         int result = projectService.addProjectInfo(projectEntity, projectEntity.getCreatedBy());
-        if (result == -1) {
-            httpResponseEntity.setMessage(Constans.ADD_MESSAGE);
-            httpResponseEntity.setCode(Constans.SUCCESS_CODE);
-        } else {
+        if (result == 0) {
             httpResponseEntity.setMessage(Constans.PROJECT_NAME_EXIT_MESSAGE);
             httpResponseEntity.setCode(Constans.EXIST_CODE);
+        } else {
+            httpResponseEntity.setMessage(Constans.ADD_MESSAGE);
+            httpResponseEntity.setCode(Constans.SUCCESS_CODE);
         }
         return httpResponseEntity;
     }
