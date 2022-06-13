@@ -177,7 +177,7 @@
   <!--根据项目id删除项目-->
   <delete id="deleteProjectById" parameterType="java.lang.String">
     DELETE FROM project_info
-    WHERE id = #{id,jdbcType=VARCHAR}
+    where id not in (select project_id from questionnaire_info where question_stop != 4 and question_stop != 5 ) and id = #{id,jdbcType=VARCHAR}
   </delete>
 
   <!--查询项目列表-->

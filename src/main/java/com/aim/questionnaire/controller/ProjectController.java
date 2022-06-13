@@ -53,11 +53,16 @@ public class ProjectController {
     @RequestMapping(value = "/deleteProjectById", method = RequestMethod.POST, headers = "Accept=application/json")
     public HttpResponseEntity deleteProjectById(@RequestBody ProjectEntity projectEntity) {
         HttpResponseEntity httpResponseEntity = new HttpResponseEntity();
+
         int result = projectService.deleteProjectById(projectEntity);
         if (result == -1) {
             httpResponseEntity.setCode(Constans.EXIST_CODE);
             httpResponseEntity.setData(result);
             httpResponseEntity.setMessage(Constans.PROJECT_EXIST_MESSAGE);
+        } else if (result == 0) {
+            httpResponseEntity.setCode(Constans.EXIST_CODE);
+            httpResponseEntity.setData(result);
+            httpResponseEntity.setMessage(Constans.QUESTION_EXIST_MESSAGE);
         } else {
             httpResponseEntity.setCode(Constans.SUCCESS_CODE);
             httpResponseEntity.setData(result);
@@ -96,9 +101,19 @@ public class ProjectController {
     public HttpResponseEntity modifyProjectInfo(@RequestBody ProjectEntity projectEntity) {
         HttpResponseEntity httpResponseEntity = new HttpResponseEntity();
         int result = projectService.modifyProjectInfo(projectEntity, projectEntity.getLastUpdatedBy());
-        httpResponseEntity.setData(result);
-        httpResponseEntity.setCode(Constans.SUCCESS_CODE);
-        httpResponseEntity.setMessage(Constans.UPDATE_MESSAGE);
+        if (result == -1) {
+            httpResponseEntity.setCode(Constans.EXIST_CODE);
+            httpResponseEntity.setData(result);
+            httpResponseEntity.setMessage(Constans.PROJECT_EXIST_MESSAGE);
+        } else if (result == 0) {
+            httpResponseEntity.setCode(Constans.EXIST_CODE);
+            httpResponseEntity.setData(result);
+            httpResponseEntity.setMessage(Constans.QUESTION_EXIST_MESSAGE);
+        } else {
+            httpResponseEntity.setCode(Constans.SUCCESS_CODE);
+            httpResponseEntity.setData(result);
+            httpResponseEntity.setMessage(Constans.UPDATE_MESSAGE);
+        }
         return httpResponseEntity;
     }
 

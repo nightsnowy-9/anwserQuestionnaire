@@ -64,15 +64,15 @@ spring:
     #    password: lying
     #    driver-class-name: com.mysql.jdbc.Driver
     #    #连接mysql8数据库
-         url: jdbc:mysql://127.0.0.1:3306/questionnaire?useUnicode=true&characterEncoding=utf-8&useSSL=false
-         username: root
-         password: McLgHZqi=4NY
-         driver-class-name: com.mysql.jdbc.Driver
-#    #连接武熠栋的数据库
-#    url: jdbc:mysql://127.0.0.1:3306/questionnaire?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false
-#    username: root
-#    password: wyd001219
-#    driver-class-name: com.mysql.jdbc.Driver
+#         url: jdbc:mysql://127.0.0.1:3306/questionnaire?useUnicode=true&characterEncoding=utf-8&useSSL=false
+#         username: root
+#         password: McLgHZqi=4NY
+#         driver-class-name: com.mysql.jdbc.Driver
+    #连接武熠栋的数据库
+    url: jdbc:mysql://127.0.0.1:3306/questionnaire?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false
+    username: root
+    password: wyd001219
+    driver-class-name: com.mysql.jdbc.Driver
 
 nacos:
   discovery:
