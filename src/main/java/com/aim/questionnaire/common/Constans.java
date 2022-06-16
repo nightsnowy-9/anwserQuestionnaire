@@ -14,6 +14,7 @@ public class Constans {
 
     public static final String EXIST_MESSAGE="系统异常";
     public static final String DELETE_MESSAGE="删除成功";
+    public static final String DELETE_ERROR="删除失败";
     public static final String UPDATE_MESSAGE="修改成功";
     public static final String ADD_MESSAGE="添加成功";
     public static final String STATUS_MESSAGE="查询成功";

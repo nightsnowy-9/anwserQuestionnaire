@@ -15,6 +15,9 @@ import com.github.pagehelper.PageInfo;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import java.util.*;
 
@@ -22,6 +25,7 @@ import java.util.*;
  * Created by nightsnowy on 2022\5\30.
  */
 @Service
+@CacheConfig(cacheNames = "user")
 public class MyUserService extends  UserService{
     @Autowired
     private MyUserEntityMapper userEntityMapper;
@@ -29,7 +33,9 @@ public class MyUserService extends  UserService{
     @Autowired
     private QuestionnaireEntityMapper questionnaireEntityMapper;
 
+    @Cacheable(value = "query-user-list")
     public List<Map<String,Object>> queryUserList(Map<String,Object> map) {
+        System.out.println("???");
         List<Map<String,Object>> data=userEntityMapper.queryUserList(map);
         //List<Map<String,Object>> data = new ArrayList<>();
         Map<String, Object> tot = new HashMap<>();

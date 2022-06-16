@@ -172,7 +172,7 @@ function addFunctionAlty(value, row, index) {
     } else if (row.status == "0") {
         btnText += "<button type=\"button\" id=\"btn_stop" + row.id + "\" onclick=\"changeStatus(" + "'" + row.id + "'" + ")\" class=\"btn btn-success-g ajax-link\">开启</button>&nbsp;&nbsp;"
     }
-    btnText += "<button type=\"button\" id=\"btn_stop" + row.id + "\" onclick=\"deleteUser(" + "'" + row.id + "'" + ")\" class=\"btn btn-danger-g ajax-link\">删除</button>&nbsp;&nbsp;";
+    btnText += "<button type=\"button\" id=\"btn_stop" + row.id + "\" onclick=\"deleteUser(" + "'" + row.username + "'" + ")\" class=\"btn btn-danger-g ajax-link\">删除</button>&nbsp;&nbsp;";
 
     return btnText;
 }
@@ -206,8 +206,25 @@ function changeStatus(index) {
 }
 
 //删除用户
-function deleteUser(id) {
-
-    alert("删除用户")
+function deleteUser(username) {
+    var url = '/admin/deleteUserInfoById';
+    var data = {
+        "username":username
+    };
+    commonAjaxPost(false, url, data, function (result) {
+        //console.log(result)
+        if (result.code == "666") {
+            layer.msg(result.message, {icon: 1});
+            getUserList();
+        } else if (result.code == "333") {
+            layer.msg(result.message, {icon: 2});
+            setTimeout(function () {
+                window.location.href = 'login.html';
+            }, 1000)
+        } else {
+            layer.msg(result.message, {icon: 2})
+        }
+    });
+    // alert("删除用户")
 }
 

@@ -14,15 +14,19 @@ import com.github.pagehelper.PageInfo;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import javax.xml.ws.Action;
+
 import java.util.*;
 
 /**
  * Created by wln on 2018\8\9 0009.
  */
 @Service
+@CacheConfig(cacheNames = "user")
 public class UserService {
 
     @Autowired
@@ -63,6 +67,7 @@ public class UserService {
      * @param map
      * @return
      */
+    @CacheEvict(value = "query-user-list",allEntries = true)
     public int addUserInfo(Map<String,Object> map) {
 
         if(map.get("username") != null) {
@@ -100,8 +105,9 @@ public class UserService {
      * @param map
      * @return
      */
+    @CacheEvict(value = "query-user-list",allEntries = true)
     public int modifyUserInfo(Map<String, Object> map) {
-        
+
         return 0;
     }
 
@@ -110,8 +116,9 @@ public class UserService {
      * @param map
      * @return
      */
+    @CacheEvict(value = "query-user-list",allEntries = true)
     public int modifyUserStatus(Map<String, Object> map) {
-    
+
         return 0;
     }
 
@@ -120,6 +127,7 @@ public class UserService {
      * @param userEntity
      * @return
      */
+//    @Cacheable("select-user-info-by-id")
     public Map<String,Object> selectUserInfoById(UserEntity userEntity) {
 
         return null;
@@ -130,8 +138,9 @@ public class UserService {
      * @param userEntity
      * @return
      */
+    @CacheEvict(value = "query-user-list",allEntries = true)
     public int deteleUserInfoById(UserEntity userEntity) {
-
-        return 0;
+        int result = userEntityMapper.deteleUserInfoById(userEntity);
+        return result;
     }
 }

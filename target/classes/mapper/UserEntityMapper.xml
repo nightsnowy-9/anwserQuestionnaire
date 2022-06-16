@@ -178,7 +178,7 @@
 
   <!--删除用户信息-->
   <delete id="deteleUserInfoById">
-
+delete from user_info where username = #{username,jdbcType=VARCHAR}
   </delete>
 
   <!--查询用户密码-->
